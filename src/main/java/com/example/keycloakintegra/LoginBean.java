@@ -12,7 +12,6 @@ public class LoginBean {
 
     private final String KEYCLOAK_URL = "http://localhost:8080/realms/treinamento-realm/protocol/openid-connect/auth";
     private final String CLIENT_ID = "treinamento";
-    // Removi o .xhtml para bater com sua solicitação inicial e evitei encode manual
     private final String REDIRECT_URI = "http://localhost:8181/logado.xhtml";
 
     public void login() throws IOException {
