@@ -6,12 +6,16 @@
 </h:head>
 <h:body>
     <h2>Token Recebido</h2>
+    <h:form>
+        <h:commandButton value="Logout" action="#{logadoBean.logout}" />
+    </h:form>
+    <br/>
     <h:panelGrid columns="1">
-        <h:outputText value="Code Access:" />
-        <h:inputTextarea value="#{logadoBean.code}" cols="100" rows="10" readonly="true" />
-
-        <h:outputText value="Access Token:" />
+        <h:outputText value="Access Token (Raw):" />
         <h:inputTextarea value="#{logadoBean.accessToken}" cols="100" rows="10" readonly="true" />
+
+        <h:outputText value="ID Token (Raw):" />
+        <h:inputTextarea value="#{logadoBean.idToken}" cols="100" rows="5" readonly="true" />
 
         <h:outputText value="Token Decodificado:" />
         <h:inputTextarea value="#{logadoBean.decodedToken}" cols="100" rows="15" readonly="true" />
