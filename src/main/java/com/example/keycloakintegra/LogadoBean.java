@@ -27,12 +27,14 @@ public class LogadoBean implements Serializable {
         Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         this.code = params.get("code");
 
+        // Se o código estiver presente e ainda não tivermos o token, buscamos.
         if (this.code != null && this.accessToken == null) {
             exchangeCodeForToken();
         }
     }
 
     private void exchangeCodeForToken() {
+        // Atualizado para usar o realm 'treinamento-realm'
         String tokenUrl = "http://localhost:8080/realms/treinamento-realm/protocol/openid-connect/token";
         RestTemplate restTemplate = new RestTemplate();
 
@@ -43,6 +45,7 @@ public class LogadoBean implements Serializable {
         map.add("grant_type", "authorization_code");
         map.add("client_id", "treinamento");
         map.add("code", this.code);
+        // A redirect_uri aqui DEVE ser idêntica à enviada no LoginBean
         map.add("redirect_uri", "http://localhost:8181/logado.xhtml");
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
